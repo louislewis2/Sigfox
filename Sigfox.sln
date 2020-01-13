@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29326.143
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3C32C092-AE51-4B94-82F8-2C16B4694F81}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sigfox", "src\Sigfox\Sigfox.csproj", "{6DBA92A0-3849-400D-8D38-3DCF9BD1506D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{801473B0-7C46-4370-A61D-FE6C057108F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sigfox.Tests", "test\Sigfox.Tests\Sigfox.Tests.csproj", "{1B7CE0E0-4FB9-497D-93F2-7EEBAD06A47A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7B7FF21E-E32C-4F42-AD0D-3C3100B8202E}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6DBA92A0-3849-400D-8D38-3DCF9BD1506D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DBA92A0-3849-400D-8D38-3DCF9BD1506D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DBA92A0-3849-400D-8D38-3DCF9BD1506D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DBA92A0-3849-400D-8D38-3DCF9BD1506D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B7CE0E0-4FB9-497D-93F2-7EEBAD06A47A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B7CE0E0-4FB9-497D-93F2-7EEBAD06A47A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B7CE0E0-4FB9-497D-93F2-7EEBAD06A47A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B7CE0E0-4FB9-497D-93F2-7EEBAD06A47A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6DBA92A0-3849-400D-8D38-3DCF9BD1506D} = {3C32C092-AE51-4B94-82F8-2C16B4694F81}
+		{1B7CE0E0-4FB9-497D-93F2-7EEBAD06A47A} = {801473B0-7C46-4370-A61D-FE6C057108F7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B1899A9-2196-49CD-A7D0-12DAC5B8DF78}
+	EndGlobalSection
+EndGlobal
