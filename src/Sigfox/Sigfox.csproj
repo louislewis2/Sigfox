@@ -1,7 +1,21 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>Sigfox Integration Library</Description>
+    <VersionPrefix>1.0.0-alpha1</VersionPrefix>
+    <Authors>Louis Lewis</Authors>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <AssemblyName>Sigfox</AssemblyName>
+    <PackageId>Sigfox</PackageId>
+    <PackageTags>Sigfox;Sigfox Integration</PackageTags>
+    <PackageLicenseUrl>https://github.com/louislewis2/Sigfox/blob/master/License.md</PackageLicenseUrl>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/louislewis2/Sigfox</RepositoryUrl>
+    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <PackageReleaseNotes>Alpha Release</PackageReleaseNotes>
+    <PackageProjectUrl>https://github.com/louislewis2/Sigfox</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
