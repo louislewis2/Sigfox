@@ -61,7 +61,7 @@
 
             var httpResponseMessage = await this.httpClient.PostAsync(resourceUrl, content);
 
-            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            if (httpResponseMessage.StatusCode == HttpStatusCode.OK || httpResponseMessage.StatusCode == HttpStatusCode.Created)
             {
                 return httpResponseMessage.Deserialize<T>();
             }
@@ -84,6 +84,57 @@
             this.httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(productName: productInfo, productVersion: "0.0.1"));
 
             var httpResponseMessage = await this.httpClient.GetAsync(finalResourceUrl);
+
+            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                return httpResponseMessage.Deserialize<T>();
+            }
+
+            throw new IntegrationException(httpResponseMessage: httpResponseMessage, httpResponseMessage.ReasonPhrase);
+        }
+
+        public async Task<T> PutAsync<T>(string resourceUrl, object data) where T : class
+        {
+            if (string.IsNullOrWhiteSpace(resourceUrl))
+            {
+                throw new ArgumentException("Resource Url Cannot Be Emtpty");
+            }
+
+            if (data == null)
+            {
+                throw new ArgumentException("Data Cannot Be Null");
+            }
+
+            var content = new StringContent(SerializeToJson(data), Encoding.UTF8, "application/json");
+
+            this.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
+                Convert.ToBase64String(Encoding.ASCII.GetBytes($"{this.login}:{this.password}")));
+            this.httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(productName: productInfo, productVersion: "0.0.1"));
+            this.httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var httpResponseMessage = await this.httpClient.PutAsync(resourceUrl, content);
+
+            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                return httpResponseMessage.Deserialize<T>();
+            }
+
+            throw new IntegrationException(httpResponseMessage: httpResponseMessage, httpResponseMessage.ReasonPhrase);
+        }
+
+        public async Task<T> DeleteAsync<T>(string resourceUrl) where T : class
+        {
+            if (string.IsNullOrWhiteSpace(resourceUrl))
+            {
+                throw new ArgumentException("Resource Url Cannot Be Emtpty");
+            }
+
+            this.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
+                Convert.ToBase64String(Encoding.ASCII.GetBytes($"{this.login}:{this.password}")));
+            this.httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(productName: productInfo, productVersion: "0.0.1"));
+            this.httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var httpResponseMessage = await this.httpClient.DeleteAsync(resourceUrl);
 
             if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
             {
