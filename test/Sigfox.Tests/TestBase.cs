@@ -6,10 +6,20 @@
 
     public class TestBase
     {
+        #region Constructor
+
+        public TestBase()
+        {
+            this.Random = new Random();
+        }
+
+        #endregion Constructor
+
         #region Properties
 
         public string Login = ""; // Remove Value Before Comitting Code
         public string Password = ""; // Remove Value Before Comitting Code
+        public Random Random { get; }
 
         #endregion Properties
 

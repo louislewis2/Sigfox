@@ -2,6 +2,8 @@
 {
     using Enums;
 
+    using ViewModels;
+
     /// <summary>
     /// https://support.sigfox.com/apidocs#operation/updateGroup
     /// </summary>
@@ -11,6 +13,14 @@
 
         public UpdateGroupCriteria()
         {
+        }
+
+        public UpdateGroupCriteria(Group group)
+        {
+            this.Name = group.Name;
+            this.Description = group.Description;
+            this.Type = group.Type;
+            this.Timezone = group.Timezone;
         }
 
         public UpdateGroupCriteria(string name, string description, GroupTypes type, string timezone)

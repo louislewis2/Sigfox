@@ -71,6 +71,48 @@ namespace Sigfox.Tests
             Assert.Equal(expected: devicesPagedResponse.Data.First().Id, actual: devicesPagedResponse2.Data.First().Id);
         }
 
+        [Fact]
+        public async Task Can_Get_Device()
+        {
+            // Arrange
+            var client = this.GetClient();
+            var devicesPagedResponse = await client.GetDevices();
+
+            // Act
+            var device = await client.GetDevice(deviceId: devicesPagedResponse.Data.First().Id);
+
+            // Assert
+            Assert.NotNull(@object: device);
+        }
+
+        [Fact]
+        public async Task Can_Get_Device_Message_Metric()
+        {
+            // Arrange
+            var client = this.GetClient();
+            var devicesPagedResponse = await client.GetDevices();
+
+            // Act
+            var messageMetric = await client.GetDeviceMessageNumbers(deviceId: devicesPagedResponse.Data.First().Id);
+
+            // Assert
+            Assert.NotNull(@object: messageMetric);
+        }
+
+        [Fact]
+        public async Task Can_Get_Device_Message_Messages()
+        {
+            // Arrange
+            var client = this.GetClient();
+            var devicesPagedResponse = await client.GetDevices();
+
+            // Act
+            var deviceMessages = await client.GetDeviceMessages(deviceId: devicesPagedResponse.Data.First().Id, deviceMessageQuery: new DeviceMessageQuery());
+
+            // Assert
+            Assert.NotNull(@object: deviceMessages);
+        }
+
         #endregion Methods
     }
 }

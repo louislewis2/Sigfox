@@ -12,12 +12,13 @@
     using Newtonsoft.Json.Serialization;
 
     using Sigfox.Exceptions;
+    using Sigfox.Api.Errors;
 
     public class SigfoxIntegrationClient
     {
         #region Fields
 
-        private const string baseUrl = "https://api.sigfox.com/v2/";
+        private const string baseUrl = "https://api-demo.sigfox.com/v2/";
         private const string productInfo = "SigfoxIntegrationClient";
 
         private readonly string login;
@@ -65,6 +66,12 @@
             {
                 return httpResponseMessage.Deserialize<T>();
             }
+            else if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
+            {
+                var errorResponse = httpResponseMessage.Deserialize<ErrorResponse>();
+
+                throw new IntegrationException(httpResponseMessage: httpResponseMessage, httpResponseMessage.ReasonPhrase, errorResponse);
+            }
 
             throw new IntegrationException(httpResponseMessage: httpResponseMessage, httpResponseMessage.ReasonPhrase);
         }
@@ -93,7 +100,7 @@
             throw new IntegrationException(httpResponseMessage: httpResponseMessage, httpResponseMessage.ReasonPhrase);
         }
 
-        public async Task<T> PutAsync<T>(string resourceUrl, object data) where T : class
+        public async Task<bool> PutAsync(string resourceUrl, object data)
         {
             if (string.IsNullOrWhiteSpace(resourceUrl))
             {
@@ -114,15 +121,49 @@
 
             var httpResponseMessage = await this.httpClient.PutAsync(resourceUrl, content);
 
-            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            if (httpResponseMessage.StatusCode == HttpStatusCode.NoContent)
             {
-                return httpResponseMessage.Deserialize<T>();
+                return true;
+            }
+            else if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
+            {
+                var errorResponse = httpResponseMessage.Deserialize<ErrorResponse>();
+
+                throw new IntegrationException(httpResponseMessage: httpResponseMessage, httpResponseMessage.ReasonPhrase, errorResponse);
             }
 
             throw new IntegrationException(httpResponseMessage: httpResponseMessage, httpResponseMessage.ReasonPhrase);
         }
 
-        public async Task<T> DeleteAsync<T>(string resourceUrl) where T : class
+        public async Task<T> PutAsync<T>(string resourceUrl) where T : class
+        {
+            if (string.IsNullOrWhiteSpace(resourceUrl))
+            {
+                throw new ArgumentException("Resource Url Cannot Be Emtpty");
+            }
+
+            this.httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic",
+                Convert.ToBase64String(Encoding.ASCII.GetBytes($"{this.login}:{this.password}")));
+            this.httpClient.DefaultRequestHeaders.UserAgent.Add(new ProductInfoHeaderValue(productName: productInfo, productVersion: "0.0.1"));
+            this.httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+            var httpResponseMessage = await this.httpClient.PutAsync(resourceUrl, null);
+
+            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            {
+                return httpResponseMessage.Deserialize<T>();
+            }
+            else if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
+            {
+                var errorResponse = httpResponseMessage.Deserialize<ErrorResponse>();
+
+                throw new IntegrationException(httpResponseMessage: httpResponseMessage, httpResponseMessage.ReasonPhrase, errorResponse);
+            }
+
+            throw new IntegrationException(httpResponseMessage: httpResponseMessage, httpResponseMessage.ReasonPhrase);
+        }
+
+        public async Task<bool> DeleteAsync(string resourceUrl)
         {
             if (string.IsNullOrWhiteSpace(resourceUrl))
             {
@@ -136,9 +177,15 @@
 
             var httpResponseMessage = await this.httpClient.DeleteAsync(resourceUrl);
 
-            if (httpResponseMessage.StatusCode == HttpStatusCode.OK)
+            if (httpResponseMessage.StatusCode == HttpStatusCode.NoContent)
             {
-                return httpResponseMessage.Deserialize<T>();
+                return true;
+            }
+            else if (httpResponseMessage.StatusCode == HttpStatusCode.BadRequest)
+            {
+                var errorResponse = httpResponseMessage.Deserialize<ErrorResponse>();
+
+                throw new IntegrationException(httpResponseMessage: httpResponseMessage, httpResponseMessage.ReasonPhrase, errorResponse);
             }
 
             throw new IntegrationException(httpResponseMessage: httpResponseMessage, httpResponseMessage.ReasonPhrase);

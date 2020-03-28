@@ -1,13 +1,14 @@
 namespace Sigfox.Tests
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
 
     using Xunit;
 
+    using Sigfox.Api.Groups.Enums;
     using Sigfox.Api.Groups.Queries;
     using Sigfox.Api.Groups.Criteria;
-    using Sigfox.Api.Groups.Enums;
 
     public class GroupTests : TestBase
     {
@@ -79,19 +80,133 @@ namespace Sigfox.Tests
             // Arrange
             var client = this.GetClient();
             var createGroupCriteria = new CreateGroupCriteria(
-                name: "Test Group",
+                name: this.Random.Generate(10),
                 description: "Test Group Description",
-                type: GroupTypes.Channel,
+                type: GroupTypes.Other,
                 timezone: "Europe/Paris",
-                parentId: "",
-                networkOperatorId: ""
-                );
+                parentId: "5e1d9ed9e0102e186cb33db8",
+                networkOperatorId: "");
 
             // Act
             var createdResponse = await client.Create(createGroupCriteria: createGroupCriteria);
 
             // Assert
             Assert.NotNull(@object: createdResponse);
+        }
+
+        [Fact]
+        public async Task Can_Get_Group()
+        {
+            // Arrange
+            var client = this.GetClient();
+            var createGroupCriteria = new CreateGroupCriteria(
+                name: this.Random.Generate(10),
+                description: "Test Group Description",
+                type: GroupTypes.Other,
+                timezone: "Europe/Paris",
+                parentId: "5e1d9ed9e0102e186cb33db8",
+                networkOperatorId: "");
+
+            var createdResponse = await client.Create(createGroupCriteria: createGroupCriteria);
+
+            // Act
+            var loadedGroup = await client.GetGroup(groupId: createdResponse.Id);
+
+            // Assert
+            Assert.NotNull(@object: loadedGroup);
+        }
+
+        [Fact]
+        public async Task Can_Update_Group()
+        {
+            // Arrange
+            var client = this.GetClient();
+            var createGroupCriteria = new CreateGroupCriteria(
+                name: this.Random.Generate(10),
+                description: "Test Group Description",
+                type: GroupTypes.Other,
+                timezone: "Europe/Paris",
+                parentId: "5e1d9ed9e0102e186cb33db8",
+                networkOperatorId: "");
+
+            var createdResponse = await client.Create(createGroupCriteria: createGroupCriteria);
+            var loadedGroup = await client.GetGroup(groupId: createdResponse.Id);
+            var updateGroupCriteria = new UpdateGroupCriteria(group: loadedGroup);
+            updateGroupCriteria.Name = this.Random.Generate(10);
+
+            // Act
+            var updateResponse = await client.Update(groupId: loadedGroup.Id, updateGroupCriteria: updateGroupCriteria);
+
+            // Assert
+            Assert.True(condition: updateResponse);
+        }
+
+        [Fact]
+        public async Task Can_Delete_Group()
+        {
+            // Arrange
+            var client = this.GetClient();
+            var createGroupCriteria = new CreateGroupCriteria(
+                name: this.Random.Generate(10),
+                description: "Test Group Description",
+                type: GroupTypes.Other,
+                timezone: "Europe/Paris",
+                parentId: "5e1d9ed9e0102e186cb33db8",
+                networkOperatorId: "");
+
+            var createdResponse = await client.Create(createGroupCriteria: createGroupCriteria);
+
+            // Act
+            var deleteResponse = await client.DeleteGroup(groupId: createdResponse.Id);
+
+            // Assert
+            Assert.True(condition: deleteResponse);
+        }
+
+        [Fact]
+        public async Task Can_Get_Group_UnDelivered_CallBacks()
+        {
+            // Arrange
+            var client = this.GetClient();
+            var createGroupCriteria = new CreateGroupCriteria(
+                name: this.Random.Generate(10),
+                description: "Test Group Description",
+                type: GroupTypes.Other,
+                timezone: "Europe/Paris",
+                parentId: "5e1d9ed9e0102e186cb33db8",
+                networkOperatorId: "");
+
+            var createdResponse = await client.Create(createGroupCriteria: createGroupCriteria);
+            var undeliveredCallBackQuery = new UndeliveredCallbackQuery();
+
+            // Act
+            var undeliveredCallbacks = await client.GetGroupUndeliveredCallbacks(groupId: createdResponse.Id, undeliveredCallbackQuery: undeliveredCallBackQuery);
+
+            // Assert
+            Assert.NotNull(@object: undeliveredCallbacks);
+        }
+
+        [Fact]
+        public async Task Can_Get_Group_GeoLocation_Payload()
+        {
+            // Arrange
+            var client = this.GetClient();
+            var createGroupCriteria = new CreateGroupCriteria(
+                name: this.Random.Generate(10),
+                description: "Test Group Description",
+                type: GroupTypes.Other,
+                timezone: "Europe/Paris",
+                parentId: "5e1d9ed9e0102e186cb33db8",
+                networkOperatorId: "");
+
+            var createdResponse = await client.Create(createGroupCriteria: createGroupCriteria);
+            var geolocationPayloadQuery = new GeolocationPayloadQuery();
+
+            // Act
+            var undeliveredCallbacks = await client.GetGroupGeoLocationPayloads(groupId: createdResponse.Id, geolocationPayloadQuery: geolocationPayloadQuery);
+
+            // Assert
+            Assert.NotNull(@object: undeliveredCallbacks);
         }
 
         #endregion Methods
