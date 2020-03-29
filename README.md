@@ -16,11 +16,15 @@ I cannot test all endpoints with the account and devices I have.
 
 > Install-Package Sigfox
 
-The latest version is 1.0.0.-alpha3
+The latest version is 1.0.0.-alpha4
 
 # Implemented Endpoints
 
+## Users
+
 * GET Users
+
+## Devices
 
 * GET Device
 * PUT Device
@@ -30,11 +34,18 @@ The latest version is 1.0.0.-alpha3
 * GET Device Messages
 * GET Device Messages Metric
 
+## Contracts
+
 * GET Contract
 * GET Contracts
 * Get Contract Devices
 
+
+## Device Types
+
 * GET Device Types
+
+## Api Users
 
 * GET Api User
 * GET Api Users
@@ -45,6 +56,8 @@ The latest version is 1.0.0.-alpha3
 * DELETE Api User Profile
 * DELETE Api User
 
+## Groups
+
 * GET Group
 * GET Groups
 * GET Group Undelivered Callbacks
@@ -53,6 +66,9 @@ The latest version is 1.0.0.-alpha3
 * PUT Group
 * DELETE Group
 
+## Profiles
+
+* Get Profiles
 
 # Running Tests
 

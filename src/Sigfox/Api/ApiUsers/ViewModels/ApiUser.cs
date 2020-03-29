@@ -1,7 +1,7 @@
 ﻿namespace Sigfox.Api.ApiUsers.ViewModels
 {
     using Groups.ViewModels;
-    using Shared.ViewModels;
+    using Profiles.ViewModels;
 
     public class ApiUser
     {

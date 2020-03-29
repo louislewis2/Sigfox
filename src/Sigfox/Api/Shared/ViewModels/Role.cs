@@ -1,6 +1,7 @@
 ﻿namespace Sigfox.Api.Shared.ViewModels
 {
-    using Sigfox.Api.Groups.ViewModels;
+    using Groups.ViewModels;
+    using Profiles.ViewModels;
 
     public class Role
     {

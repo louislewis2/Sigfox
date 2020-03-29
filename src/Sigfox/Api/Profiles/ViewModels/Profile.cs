@@ -1,5 +1,8 @@
-﻿namespace Sigfox.Api.Shared.ViewModels
+﻿namespace Sigfox.Api.Profiles.ViewModels
 {
+    using Groups.ViewModels;
+    using Shared.ViewModels;
+
     public class Profile
     {
         #region Constructor
@@ -16,6 +19,8 @@
 
         public string Id { get; }
         public string Name { get; }
+        public MinimalGroup Group { get; }
+        public MinimalRole[] Roles { get; }
 
         #endregion Properties
 
