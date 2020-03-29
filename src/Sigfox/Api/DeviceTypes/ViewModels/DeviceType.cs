@@ -3,6 +3,7 @@
     using Enums;
     using Shared.Enums;
     using Groups.ViewModels;
+    using Contracts.ViewModels;
 
     public class DeviceType
     {

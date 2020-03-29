@@ -16,7 +16,7 @@ I cannot test all endpoints with the account and devices I have.
 
 > Install-Package Sigfox
 
-The latest version is 1.0.0.-alpha2
+The latest version is 1.0.0.-alpha3
 
 # Implemented Endpoints
 
@@ -29,6 +29,10 @@ The latest version is 1.0.0.-alpha2
 * GET Devices
 * GET Device Messages
 * GET Device Messages Metric
+
+* GET Contract
+* GET Contracts
+* Get Contract Devices
 
 * GET Device Types
 

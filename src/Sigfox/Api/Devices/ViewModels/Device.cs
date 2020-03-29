@@ -2,6 +2,7 @@
 {
     using Enums;
     using Groups.ViewModels;
+    using Contracts.ViewModels;
     using DeviceTypes.ViewModels;
 
     public class Device
