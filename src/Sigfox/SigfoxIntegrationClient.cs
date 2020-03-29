@@ -18,7 +18,7 @@
     {
         #region Fields
 
-        private const string baseUrl = "https://api-demo.sigfox.com/v2/";
+        private const string baseUrl = "https://api.sigfox.com/v2/";
         private const string productInfo = "SigfoxIntegrationClient";
 
         private readonly string login;
