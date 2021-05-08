@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>Sigfox Integration Library</Description>
-    <VersionPrefix>1.0.0-alpha4</VersionPrefix>
+    <VersionPrefix>1.0.0</VersionPrefix>
     <Authors>Louis Lewis</Authors>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AssemblyName>Sigfox</AssemblyName>
@@ -14,12 +14,12 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <PackageReleaseNotes>Alpha 2 Release</PackageReleaseNotes>
+    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/louislewis2/Sigfox</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
 </Project>

@@ -16,7 +16,7 @@ I cannot test all endpoints with the account and devices I have.
 
 > Install-Package Sigfox
 
-The latest version is 1.0.0.-alpha4
+The latest version is 1.0.0
 
 # Implemented Endpoints
 
@@ -73,3 +73,4 @@ The latest version is 1.0.0.-alpha4
 # Running Tests
 
 * Add Your Api Credentials In The Test Base Class.
+Remember to clear them before you commit
