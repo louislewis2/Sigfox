@@ -44,6 +44,10 @@ The latest version is 1.0.0
 ## Device Types
 
 * GET Device Types
+* GET Device Type Callbacks
+* POST Device Type Callback
+* PUT Device Type Callback
+* DELETE Device Type Calback
 
 ## Api Users
 
