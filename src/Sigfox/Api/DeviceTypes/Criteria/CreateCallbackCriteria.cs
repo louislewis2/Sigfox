@@ -1,12 +1,51 @@
 ﻿namespace Sigfox.Api.DeviceTypes.Criteria
 {
+    using System.Collections.Generic;
+
     using Newtonsoft.Json;
     using Newtonsoft.Json.Converters;
 
     using Enums;
 
+    /// <summary>
+    /// https://support.sigfox.com/apidocs#operation/createCallback
+    /// </summary>
     public class CreateCallbackCriteria
     {
+        #region Constructor
+
+        public CreateCallbackCriteria()
+        {
+        }
+
+        public CreateCallbackCriteria(
+            CallbackChannels channel,
+            CallbackTypes callbackType,
+            CallbackSubTypes callbackSubtype,
+            string payloadConfig,
+            bool enabled,
+            string url,
+            CallbackHttpMethods httpMethod,
+            string linePattern,
+            Dictionary<string, string> headers,
+            bool sendSni,
+            string bodyTemplate)
+        {
+            this.Channel = channel;
+            this.CallbackType = callbackType;
+            this.CallbackSubtype = callbackSubtype;
+            this.PayloadConfig = payloadConfig;
+            this.Enabled = enabled;
+            this.Url = url;
+            this.HttpMethod = httpMethod;
+            this.LinePattern = linePattern;
+            this.Headers = headers;
+            this.SendSni = sendSni;
+            this.BodyTemplate = bodyTemplate;
+        }
+
+        #endregion Constructor
+
         #region Properties
 
         /// <summary>
@@ -51,6 +90,21 @@
         /// The line pattern representing a message.
         /// </summary>
         public string LinePattern { get; set; }
+
+        /// <summary>
+        /// The headers of the http request to send, as an object with key:value. This field can be unset when updating.
+        /// </summary>
+        public Dictionary<string, string> Headers { get; set; }
+
+        /// <summary>
+        /// Send SNI (Server Name Indication) for SSL/TLS connections. Used by BATCH_URL and URL callbacks (optional).
+        /// </summary>
+        public bool SendSni { get; set; }
+
+        /// <summary>
+        /// The body template of the request. Only if httpMethpd is set to POST or PUT. It can contain predefined and custom variables. Mandatory for URL callbacks. This field can be unset when updating.
+        /// </summary>
+        public string BodyTemplate { get; set; }
 
         #endregion Properties
     }

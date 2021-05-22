@@ -21,7 +21,8 @@
             bool downlinkHook,
             Dictionary<string, string> headers,
             string bodyTemplate,
-            string contentType)
+            string contentType, 
+            bool sendSni)
         {
             this.Id = id;
             this.Channel = channel;
@@ -36,6 +37,7 @@
             this.Headers = headers;
             this.BodyTemplate = bodyTemplate;
             this.ContentType = contentType;
+            this.SendSni = sendSni;
         }
 
         #endregion Constructor
@@ -55,6 +57,7 @@
         public Dictionary<string, string> Headers { get; }
         public string BodyTemplate { get; }
         public string ContentType { get; }
+        public bool SendSni { get; }
 
         #endregion Properties
 

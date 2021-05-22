@@ -6,9 +6,59 @@
     using Newtonsoft.Json.Converters;
 
     using Enums;
+    using ViewModels;
 
+    /// <summary>
+    /// https://support.sigfox.com/apidocs#operation/updateCallback
+    /// </summary>
     public class UpdateCallbackCriteria
     {
+        #region Constructor
+
+        public UpdateCallbackCriteria()
+        {
+        }
+
+        public UpdateCallbackCriteria(Callback callback)
+        {
+            this.Channel = callback.Channel;
+            this.CallbackType = callback.CallbackType;
+            this.CallbackSubtype = callback.CallbackSubtype;
+            this.PayloadConfig = callback.PayloadConfig;
+            this.Enabled = callback.Enabled;
+            this.Url = callback.Url;
+            this.HttpMethod = callback.HttpMethod;
+            this.Headers = callback.Headers;
+            this.SendSni = callback.SendSni;
+            this.BodyTemplate = callback.BodyTemplate;
+        }
+
+        public UpdateCallbackCriteria(
+            CallbackChannels channel,
+            CallbackTypes callbackType,
+            CallbackSubTypes callbackSubtype,
+            string payloadConfig,
+            bool enabled,
+            string url,
+            CallbackHttpMethods httpMethod,
+            Dictionary<string, string> headers,
+            bool sendSni,
+            string bodyTemplate)
+        {
+            this.Channel = channel;
+            this.CallbackType = callbackType;
+            this.CallbackSubtype = callbackSubtype;
+            this.PayloadConfig = payloadConfig;
+            this.Enabled = enabled;
+            this.Url = url;
+            this.HttpMethod = httpMethod;
+            this.Headers = headers;
+            this.SendSni = sendSni;
+            this.BodyTemplate = bodyTemplate;
+        }
+
+        #endregion Constructor
+
         #region Properties
 
         /// <summary>

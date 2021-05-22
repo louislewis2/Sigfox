@@ -47,6 +47,11 @@
             return await sigfoxIntegrationClient.PutAsync(resourceUrl: $"{resourceUrl}/{deviceTypeId}/callbacks/{callbackId}", data: updateCallbackCriteria);
         }
 
+        public static async Task<bool> DeleteCallback(this SigfoxIntegrationClient sigfoxIntegrationClient, string callbackId, string deviceTypeId)
+        {
+            return await sigfoxIntegrationClient.DeleteAsync(resourceUrl: $"{resourceUrl}/{deviceTypeId}/callbacks/{callbackId}");
+        }
+
         #endregion Methods
     }
 }
