@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Description>Sigfox Integration Library</Description>
-    <VersionPrefix>1.0.0</VersionPrefix>
+    <VersionPrefix>1.0.1</VersionPrefix>
     <Authors>Louis Lewis</Authors>
     <TargetFrameworks>netstandard2.0</TargetFrameworks>
     <AssemblyName>Sigfox</AssemblyName>
@@ -14,7 +14,7 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <PackageReleaseNotes>Initial Release</PackageReleaseNotes>
+    <PackageReleaseNotes>Callback support</PackageReleaseNotes>
     <PackageProjectUrl>https://github.com/louislewis2/Sigfox</PackageProjectUrl>
   </PropertyGroup>
 
