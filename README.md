@@ -16,7 +16,7 @@ I cannot test all endpoints with the account and devices I have.
 
 > Install-Package Sigfox
 
-The latest version is 1.0.0
+The latest version is 1.0.1
 
 # Implemented Endpoints
 
