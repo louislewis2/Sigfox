@@ -31,6 +31,7 @@
             this.Headers = callback.Headers;
             this.SendSni = callback.SendSni;
             this.BodyTemplate = callback.BodyTemplate;
+            this.ContentType = callback.ContentType;
         }
 
         public UpdateCallbackCriteria(
@@ -43,7 +44,8 @@
             CallbackHttpMethods httpMethod,
             Dictionary<string, string> headers,
             bool sendSni,
-            string bodyTemplate)
+            string bodyTemplate, 
+            string contentType)
         {
             this.Channel = channel;
             this.CallbackType = callbackType;
@@ -55,6 +57,7 @@
             this.Headers = headers;
             this.SendSni = sendSni;
             this.BodyTemplate = bodyTemplate;
+            this.ContentType = contentType;
         }
 
         #endregion Constructor
@@ -113,6 +116,11 @@
         /// The body template of the request. Only if httpMethpd is set to POST or PUT. It can contain predefined and custom variables. Mandatory for URL callbacks. This field can be unset when updating.
         /// </summary>
         public string BodyTemplate { get; set; }
+
+        /// <summary>
+        /// The body media type of the request, only if httpMethpd is set to POST or PUT. This field can be unset when updating.
+        /// </summary>
+        public string ContentType { get; set; }
 
         #endregion Properties
     }

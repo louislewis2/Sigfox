@@ -100,12 +100,13 @@ namespace Sigfox.Tests
                 callbackSubtype: CallbackSubTypes.UPLINK,
                 payloadConfig: string.Empty,
                 enabled: true,
-                url: "https://test-callback@somesite.com/",
+                url: "https://test-callback.somesite.com/",
                 httpMethod: CallbackHttpMethods.POST,
                 linePattern: string.Empty,
                 headers: new Dictionary<string, string> { { "Authorization", "Bearer 1234567" } },
                 sendSni: false,
-                bodyTemplate: "{\"data\":{data}, \"time\": {time}}");
+                bodyTemplate: "{\"data\":\"{data}\", \"time\": \"{time}\"}",
+                contentType: "application/json");
 
             // Act
             var createCallbackResponse = await client.CreateCallback(deviceTypeId: devicesPagedResponse.Data.First().Id, createCallbackCriteria: createCallbackCriteria);
@@ -127,12 +128,13 @@ namespace Sigfox.Tests
                 callbackSubtype: CallbackSubTypes.UPLINK,
                 payloadConfig: string.Empty,
                 enabled: true,
-                url: "https://test-callback@somesite.com/",
+                url: "https://test-callback.somesite.com/",
                 httpMethod: CallbackHttpMethods.POST,
                 linePattern: string.Empty,
                 headers: new Dictionary<string, string> { { "Authorization", "Bearer 1234567" } },
                 sendSni: false,
-                bodyTemplate: "{\"data\":{data}, \"time\": {time}}");
+                bodyTemplate: "{\"data\":\"{data}\", \"time\": \"{time}\"}",
+                contentType: "application/json");
 
             var deviceTypeId = devicesPagedResponse.Data.First().Id;
             var createCallbackResponse = await client.CreateCallback(deviceTypeId: deviceTypeId, createCallbackCriteria: createCallbackCriteria);
@@ -164,12 +166,13 @@ namespace Sigfox.Tests
                 callbackSubtype: CallbackSubTypes.UPLINK,
                 payloadConfig: string.Empty,
                 enabled: true,
-                url: "https://test-callback@somesite.com/",
+                url: "https://test-callback.somesite.com/",
                 httpMethod: CallbackHttpMethods.POST,
                 linePattern: string.Empty,
                 headers: new Dictionary<string, string> { { "Authorization", "Bearer 1234567" } },
                 sendSni: false,
-                bodyTemplate: "{\"data\":{data}, \"time\": {time}}");
+                bodyTemplate: "{\"data\":\"{data}\", \"time\": \"{time}\"}",
+                contentType: "application/json");
 
             var deviceTypeId = devicesPagedResponse.Data.First().Id;
             var createCallbackResponse = await client.CreateCallback(deviceTypeId: deviceTypeId, createCallbackCriteria: createCallbackCriteria);
